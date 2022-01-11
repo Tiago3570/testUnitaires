@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: com.openclassrooms.testing.CalculatorTest
+-------------------------------------------------------------------------------
+Tests run: 12, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.111 s - in com.openclassrooms.testing.CalculatorTest
