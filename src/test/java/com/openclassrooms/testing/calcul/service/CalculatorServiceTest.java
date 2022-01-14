@@ -20,7 +20,6 @@ import com.openclassrooms.testing.calcul.domain.Calculator;
 import com.openclassrooms.testing.calcul.domain.model.CalculationModel;
 import com.openclassrooms.testing.calcul.domain.model.CalculationType;
 
-// On ajoute mockito
 @ExtendWith(MockitoExtension.class)
 public class CalculatorServiceTest {
 
@@ -47,7 +46,6 @@ public class CalculatorServiceTest {
 				new CalculationModel(CalculationType.ADDITION, 1, 2)).getSolution();
 
 		// THEN
-		// On vérifie qui la méthode add du calculator à bien été appélé avec les paramètres 1 et 2
 		verify(calculator).add(1, 2);
 		assertThat(result).isEqualTo(3);
 	}
@@ -101,8 +99,6 @@ public class CalculatorServiceTest {
 	public void calculate_shouldUseCalculator_forAnyAddition() {
 		// GIVEN
 		final Random r = new Random();
-		// Avec mockito on est pas obliger de mettre des vrais valeurs on pet mettre directement des type
-		// Attention il faut également adapter le verifiy en question
 		when(calculator.add(any(Integer.class), any(Integer.class))).thenReturn(3);
 
 		// WHEN
@@ -110,9 +106,7 @@ public class CalculatorServiceTest {
 				new CalculationModel(CalculationType.ADDITION, r.nextInt(), r.nextInt())).getSolution();
 
 		// THEN
-		// On vérifie que la méthode addition a été appelé 1 seul fois
 		verify(calculator, times(1)).add(any(Integer.class), any(Integer.class));
-		// On vérifie que la méthode substraction n'a jamais été appelé
 		verify(calculator, never()).sub(any(Integer.class), any(Integer.class));
 		assertThat(result).isEqualTo(3);
 	}
@@ -120,12 +114,9 @@ public class CalculatorServiceTest {
 	@Test
 	public void calculate_shouldThrowIllegalArgumentAxception_forADivisionBy0() {
 		// GIVEN
-		// On test les exceptions   on remplace thenReturn par thenThrow
 		when(calculator.divide(1, 0)).thenThrow(new ArithmeticException());
 
 		// WHEN
-		// ON vérifie que le service nous retourne bien une IllegalArgumentException.
-		// Normalement quand une ArithmeticException se produit le service doit la transformer en une IllegalArgumentException
 		assertThrows(IllegalArgumentException.class, () -> classUnderTest.calculate(
 				new CalculationModel(CalculationType.DIVISION, 1, 0)));
 

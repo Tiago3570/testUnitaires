@@ -11,12 +11,9 @@ import org.junit.jupiter.api.Test;
 
 import com.openclassrooms.testing.calcul.domain.ConversionCalculator;
 
-/**
- * Si on place le @tag et le @DisplayName au niveau de la classe
- * Toutes les méthodes de la classe possèderont le tag et le displayName de la classe
- */
 @Tag("ConversionTests")
 @DisplayName("Réussir à convertir entre différentes unités.")
+
 public class ConversionCalculatorTest {
 
 	private ConversionCalculator calculatorUnderTest = new ConversionCalculator();

@@ -12,7 +12,6 @@
 		<maven.compiler.target>${maven.compiler.source}</maven.compiler.target>
 		<bootstrap.version>4.3.1</bootstrap.version>
 		<springboot.version>2.2.0.RELEASE</springboot.version>
-		<dep.cucumber.version>4.8.0</dep.cucumber.version>
 	</properties>
 
 	<parent>
@@ -44,7 +43,6 @@
 			<artifactId>bootstrap</artifactId>
 			<version>${bootstrap.version}</version>
 		</dependency>
-		<!--junit-jupiter-api est utile pour mockito -->
 		<dependency>
 			<groupId>org.junit.jupiter</groupId>
 			<artifactId>junit-jupiter-api</artifactId>
@@ -74,58 +72,16 @@
 			<artifactId>javax.inject</artifactId>
 			<version>1</version>
 		</dependency>
-
-
-
-
-
-		<!-- On ajoute comcumber -->
-
-		<!-- Cocumber n'est pas compatible avec JUNIT 5. vintage permet de lancer des test Junit 4 dans un
-		 univer JUnit 5
-		  -->
-		<dependency>
-			<groupId>org.junit.vintage</groupId>
-			<artifactId>junit-vintage-engine</artifactId>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>io.cucumber</groupId>
-			<artifactId>cucumber-jvm</artifactId>
-			<version>${dep.cucumber.version}</version>
-			<scope>test</scope>
-			<type>pom</type>
-		</dependency>
-		<dependency>
-			<groupId>io.cucumber</groupId>
-			<artifactId>cucumber-spring</artifactId>
-			<version>${dep.cucumber.version}</version>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>io.cucumber</groupId>
-			<artifactId>cucumber-junit</artifactId>
-			<version>${dep.cucumber.version}</version>
-			<scope>test</scope>
-		</dependency>
-		<!-- Fin ajout comcomber  -->
-
-
-
-		<!-- Ajoute les dépendances pour Selenium -->
 		<dependency>
 			<groupId>org.seleniumhq.selenium</groupId>
 			<artifactId>selenium-java</artifactId>
 			<scope>test</scope>
 		</dependency>
-			<!-- Driver de navigateur -->
 		<dependency>
 			<groupId>io.github.bonigarcia</groupId>
 			<artifactId>webdrivermanager</artifactId>
 			<version>3.7.1</version>
 		</dependency>
-		<!-- Ajoute les dépendances pour Selenium -->
-
 	</dependencies>
 	<build>
 		<plugins>

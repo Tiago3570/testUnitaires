@@ -14,7 +14,13 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import org.apache.logging.log4j.Logger;
-import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.Timeout;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
@@ -60,8 +66,6 @@ public class CalculatorTest {
 	}
 
 	@Test
-	@Tag("QuatreOperations") // ce test fait partie des tests des 4 opérations de base
-	@DisplayName("Réussir à faire une addition")
 	public void testAddTwoPositiveNumbers() {
 		// Arrange
 		final int a = 2;
@@ -73,24 +77,6 @@ public class CalculatorTest {
 		// Assert
 		assertThat(somme).isEqualTo(5);
 		assertEquals(5, somme);
-	}
-
-	@Test
-	@Tag("QuatreOperations") // ce test fait partie des tests des 4 opérations de base
-	@DisplayName("Réussir à faire une multiplication") // (4)
-	void testMultiplyTwoPositiveumber() {
-		// Arrange
-		int a = 2;
-		int b = 3;
-
-
-		// Act
-		int produit = this.calculatorUnderTest.multiply(a, b);
-
-		// Assert
-		assertEquals(6, produit);
-		// Assert avec AssertJ
-		assertThat(produit).isEqualTo(6);
 	}
 
 	@Test
@@ -106,16 +92,8 @@ public class CalculatorTest {
 		assertEquals(462, produit);
 	}
 
-	/**
-	 * @ParameterizedTest et @ValueSource fonctionnent en couple.
-	 * S'il manque l'une des deux annotation ça ne fonctionne pas
-	 * @ParameterizedTest : Permet de donner un titre au test que l'on va faire
-	 * fonctionne également sans le paramètre name
-	 * @ValueSource : S'ocupe de gerer les différents paramètres
-	 */
 	@ParameterizedTest(name = "{0} x 0 doit être égal à 0")
 	@ValueSource(ints = { 1, 2, 42, 1011, 5089 })
-	@DisplayName("Réussir à faire des multiplications")
 	public void multiply_shouldReturnZero_ofZeroWithMultipleIntegers(int arg) {
 		// Arrange -- Tout est prêt !
 
@@ -128,7 +106,6 @@ public class CalculatorTest {
 
 	@ParameterizedTest(name = "{0} + {1} doit être égal à {2}")
 	@CsvSource({ "1,1,2", "2,3,5", "42,57,99" })
-	@DisplayName("Réussir à faire des multiplications")
 	public void add_shouldReturnTheSum_ofMultipleIntegers(int arg1, int arg2, int expectResult) {
 		// Arrange -- Tout est prêt !
 
@@ -141,7 +118,6 @@ public class CalculatorTest {
 
 	@Timeout(1)
 	@Test
-	@DisplayName("Réussir à faire un test de timeout")
 	public void longCalcul_shouldComputeInLessThan1Second() {
 		// Arrange
 
